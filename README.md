@@ -1,6 +1,8 @@
 ## Eressea Solutions Bootstrap/Vue Boilerplate
 
-Proyecto base para codificar HTML con Bootstrap y Vue.
+Proyecto base para codificar HTML con Bootstrap 5 y Vue 3.
+
+Vue.js es llamado como recurso.
 
 ## Instalación e inicio
 
@@ -36,6 +38,14 @@ const NombrePaginaPage = Vue.defineAsyncComponent(() => loadModule('./pages/Pagi
 ```js
 app.component('nombre-componente-component', NombreComponenteComponent);
 ```
+## Releases
+
+### 1.0
+- Vue 3
+- Bootstrap 5
+- Bootstrap icons como fuentes
+- Axios
+
 ## Archivos de /src
 
 ```text
