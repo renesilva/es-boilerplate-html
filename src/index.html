@@ -10,61 +10,14 @@
     <script src="vendor/js/vue3-sfc-loader.js"></script>
     <script src="vendor/js/vue-router.global.js"></script>
     <script src="vendor/js/axios.js"></script>
+    <script src="vendor/js/vuex.global.js"></script>
     <script src="vendor/js/options.js"></script>
   </head>
   <body>
     <div id="app"></div>
     <script>
-      // ***********************************
-      // 1. Registro de Componentes
-      // ***********************************
-      const BotonComponent = Vue.defineAsyncComponent(() =>
-        loadModule('./components/Boton.vue', options),
-      );
-      // ***********************************
-
-
-      // ***********************************
-      // 2. Registro de Páginas
-      // ***********************************
-      const HomePage = Vue.defineAsyncComponent(() => loadModule('./pages/Home.vue', options));
-      const AcercaDePage = Vue.defineAsyncComponent(() =>
-        loadModule('./pages/AcercaDe.vue', options),
-      );
-      // ***********************************
-
-
-      // ***********************************
-      // 3. Registro de Rutas para páginas
-      // ***********************************
-      const routes = [
-        { path: '/', component: HomePage },
-        { path: '/acerca-de', component: AcercaDePage },
-      ];
-      // ***********************************
-
-      // Registro del router
-      const router = VueRouter.createRouter({
-        history: VueRouter.createWebHashHistory(),
-        routes,
-      });
-      // Registro de la App
-      const AppComponent = Vue.defineAsyncComponent(() => loadModule('./App.vue', options));
-      const app = Vue.createApp({
-        components: {
-          'app-component': AppComponent,
-        },
-        template: '<app-component></app-component>',
-      });
-
-      // ***********************************
-      // 4. Registro de Componentes
-      // ***********************************
-      app.component('botones-component', BotonComponent);
-      // ***********************************
-
-      app.use(router);
-      app.mount('#app');
+      const VUE_APP_PUBLIC_URL_API = '';
     </script>
+    <script src="main.js" type="module"></script>
   </body>
 </html>

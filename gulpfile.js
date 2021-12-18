@@ -11,7 +11,7 @@ const sass = require('gulp-sass')(require('sass'));
 
 // watch files
 const htmlWatchFiles = './src/*.html';
-const javascriptWatchFiles = './src/assets/js/*.js';
+const javascriptWatchFiles = './src/**/*.js';
 const vueWatchFiles = './src/**/*.vue';
 const sourceFileSass = './src/assets/scss/stylesheet.scss';
 const sassStyleWatchFiles = './src/assets/scss/**/*.scss';

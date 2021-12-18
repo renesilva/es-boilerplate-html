@@ -10,14 +10,19 @@
           <span class="fs-4">Simple header</span>
         </router-link>
         <ul class="nav nav-pills">
-          <template v-for="(navOption, index) in navOptions">
-            <li class="nav-item" :key="index">
+          <template v-for="(navOption, index) in navOptions" :key="index">
+            <li class="nav-item">
               <router-link
                 class="nav-link"
                 :class="this.$route.path === navOption.route ? 'active' : ''"
                 :to="navOption.route"
-                >{{ navOption.text }}
+              >{{ navOption.text }}
               </router-link>
+            </li>
+          </template>
+          <template v-if="loggedIn">
+            <li class="nav-item">
+              <a class="nav-link" href="#" @click="logout">Cerrar Sesión</a>
             </li>
           </template>
         </ul>
@@ -36,9 +41,22 @@
 </template>
 <script>
 export default {
+  name: 'App',
   data() {
-    return {
-      navOptions: [
+    return {};
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/');
+    },
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    },
+    navOptions() {
+      let navOptions = [
         {
           route: '/',
           text: 'Inicio',
@@ -47,11 +65,14 @@ export default {
           route: '/acerca-de',
           text: 'Acerca de',
         },
-      ],
-    };
+      ];
+      if (this.loggedIn) {
+        // se pueden agregar opciones extra cuando inicie sesión
+        navOptions = [...navOptions];
+      }
+      return navOptions;
+    },
   },
-  methods: {},
-  computed: {},
   watch: {},
   mounted() {},
   // Se pueden utilizar estos hooks para el ciclo de vida

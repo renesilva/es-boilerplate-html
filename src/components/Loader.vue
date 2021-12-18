@@ -1,9 +1,11 @@
 <template>
-  <div></div>
+  <div>
+    <div class="spinner-border my-3" role="status"></div>
+  </div>
 </template>
 <script>
 export default {
-  name: 'ExampleComponent',
+  name: 'LoaderComponent',
   data() {
     return {};
   },
@@ -18,6 +20,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
