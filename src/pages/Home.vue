@@ -16,7 +16,6 @@
         <li><a class="dropdown-item" href="#">Something else here</a></li>
       </ul>
     </div>
-    <botones-component></botones-component>
   </div>
 </template>
 <script>

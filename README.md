@@ -20,7 +20,7 @@ Para inicializar el programa se debe correr los siguientes pasos:
 
 `src/components` -> Lugar donde se encuentran los componentes. Estos componentes deben estar en .vue. En /examples/ se encuentra el ejemplo de un componente vacío.
 
-En `index.html` se deben realizar las siguientes tareas según se necesite.
+En `src/main.js` se deben realizar las siguientes tareas según se necesite.
 
 ### 1. Registro de Componentes
 ```js
@@ -40,11 +40,17 @@ app.component('nombre-componente-component', NombreComponenteComponent);
 ```
 ## Releases
 
+### 1.1
+- Vuex
+- Vee Validate (con Zod para schema)
+- Autenticación con JWT
+
 ### 1.0
 - Vue 3
 - Bootstrap 5
 - Bootstrap icons como fuentes
 - Axios
+- Vue3-sfc-loader
 
 ## Archivos de /src
 

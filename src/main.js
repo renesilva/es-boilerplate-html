@@ -5,8 +5,8 @@ import axiosInterceptor from './utility/axios-token-interceptor.js';
 // ***********************************
 // 1. Registro de Componentes
 // ***********************************
-const BotonComponent = Vue.defineAsyncComponent(() =>
-  loadModule('./components/Boton.vue', options),
+const LoaderComponent = Vue.defineAsyncComponent(() =>
+  loadModule('./components/Loader.vue', options),
 );
 // ***********************************
 
@@ -51,7 +51,7 @@ const app = Vue.createApp({
 // ***********************************
 // 4. Registro de Componentes
 // ***********************************
-app.component('botones-component', BotonComponent);
+app.component('loader-component', LoaderComponent);
 // ***********************************
 app.use(router);
 app.use(store);
