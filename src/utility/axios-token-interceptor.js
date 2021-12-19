@@ -1,4 +1,4 @@
-import { api } from '../config/site.config.js';
+import { api } from '../config/site.config.mjs';
 import AuthService from '../services/auth.service.js';
 import { createBrowserHistory } from '../vendor/js/history.production.min.js';
 
