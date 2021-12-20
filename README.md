@@ -14,6 +14,15 @@ Para inicializar el programa se debe correr los siguientes pasos:
 1. Correr `npm install` para instalar las dependencias de Node.js
 2. Correr `gulp` para iniciar el proyecto.
 
+## Conexión con API de E-Commerce
+
+Para conectar con la API de E-Commerce, en el archivo index.html modificar la siguiente línea:
+```html
+<script>
+  const VUE_APP_PUBLIC_URL_API = 'XXXXXXX';
+</script>
+```
+
 ## Registro de páginas y componentes Vue
 
 `src/pages` -> Lugar donde se encuentran las páginas. Estas páginas deben estar en .vue. En /examples/ se encuentra el ejemplo de una página vacía.
@@ -51,40 +60,6 @@ app.component('nombre-componente-component', NombreComponenteComponent);
 - Bootstrap icons como fuentes
 - Axios
 - Vue3-sfc-loader
-
-## Archivos de /src
-
-```text
-src/
-┣ assets/
-┃ ┣ images/
-┃ ┣ js/
-┃ ┃ ┗ main.js
-┃ ┗ scss/
-┃   ┣ styles/
-┃ ┃ ┃ ┣ style.scss
-┃ ┃ ┃ ┣ typography.scss
-┃ ┃ ┃ ┗ variables.scss
-┃   ┗ stylesheet.scss
-┣ components/
-┃ ┗ Boton.vue
-┣ pages/
-┃ ┣ AcercaDe.vue
-┃ ┗ Home.vue
-┣ static/
-┣ vendor/
-┃ ┣ css/
-┃ ┃ ┗ .gitkeep
-┃ ┗ js/
-┃   ┣ axios.js
-┃   ┣ bootstrap.bundle.js
-┃   ┣ options.js
-┃   ┣ vue-router.global.js
-┃   ┣ vue.global.prod.js
-┃   ┣ vue3-sfc-loader.js
-┣ App.vue
-┗ index.html
-```
 
 ## Copyright y licencia
 Código lanzando con la licencia [MIT License](https://github.com/renesilva/es-boilerplate-html/blob/master/LICENSE).
