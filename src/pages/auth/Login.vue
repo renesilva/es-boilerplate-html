@@ -37,8 +37,10 @@ export default {
       z.object({
         email: z
           .string({ required_error: 'El correo electrónico es un campo requerido.' })
-          .nonempty(),
-        password: z.string({ required_error: 'La contraseña es un campo requerido.' }).nonempty(),
+          .min(1, 'El correo electrónico es un campo requerido.'),
+        password: z
+          .string({ required_error: 'La contraseña es un campo requerido.' })
+          .min(1, 'La contraseña es un campo requerido.'),
       }),
     );
     return {
