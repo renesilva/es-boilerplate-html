@@ -25,6 +25,11 @@
               <a class="nav-link" href="#" @click="logout">Cerrar Sesión</a>
             </li>
           </template>
+          <template v-else>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/login">Iniciar Sesión</router-link>
+            </li>
+          </template>
         </ul>
       </header>
     </div>
