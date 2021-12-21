@@ -24,6 +24,12 @@ const LoginPage = Vue.defineAsyncComponent(() =>
 const RegisterPage = Vue.defineAsyncComponent(() =>
   loadModule('./pages/auth/Register.vue', options),
 );
+const ProductosListadoPage = Vue.defineAsyncComponent(() =>
+  loadModule('./pages/productos/Listado.vue', options),
+);
+const ProductosAdicionarPage = Vue.defineAsyncComponent(() =>
+  loadModule('./pages/productos/Adicionar.vue', options),
+);
 // ***********************************
 
 
@@ -36,6 +42,9 @@ const routes = [
   // Páginas de administración
   { path: '/login', component: LoginPage },
   { path: '/register', component: RegisterPage },
+  // Productos
+  { path: '/productos', component: ProductosListadoPage },
+  { path: '/productos/adicionar', component: ProductosAdicionarPage },
 ];
 // ***********************************
 

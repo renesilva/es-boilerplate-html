@@ -16,7 +16,7 @@
                 class="nav-link"
                 :class="this.$route.path === navOption.route ? 'active' : ''"
                 :to="navOption.route"
-              >{{ navOption.text }}
+                >{{ navOption.text }}
               </router-link>
             </li>
           </template>
@@ -66,14 +66,14 @@ export default {
           route: '/',
           text: 'Inicio',
         },
-        {
-          route: '/acerca-de',
-          text: 'Acerca de',
-        },
       ];
       if (this.loggedIn) {
+        let loggedInOptions = {
+          route: '/productos',
+          text: 'Productos',
+        }
         // se pueden agregar opciones extra cuando inicie sesión
-        navOptions = [...navOptions];
+        navOptions = [...navOptions, loggedInOptions];
       }
       return navOptions;
     },
