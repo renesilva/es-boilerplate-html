@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-  name: 'ExampleComponent',
+  name: 'ExamplePage',
   data() {
     return {};
   },
@@ -12,6 +12,7 @@ export default {
   watch: {},
   created() {},
   mounted() {},
+  components: {},
   // Se pueden utilizar estos hooks para el ciclo de vida
   // beforeCreate, created, beforeMount, mounted, beforeUpdate, updated
   // activated, deactivated, beforeUnmount, unmounted
