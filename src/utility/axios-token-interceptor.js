@@ -3,8 +3,11 @@ import AuthService from '../services/auth.service.js';
 import { createBrowserHistory } from '../vendor/js/history.production.min.js';
 
 const history = createBrowserHistory();
+
+window.api = api;
+
 // Request interceptor
-api.interceptors.request.use(
+window.api.interceptors.request.use(
   (config) => {
     const user = AuthService.getCurrentUser();
     if (user != null && user.token != null) {
@@ -18,7 +21,7 @@ api.interceptors.request.use(
 );
 
 // Response interceptor
-api.interceptors.response.use(
+window.api.interceptors.response.use(
   (response) => {
     if (typeof response.data.status !== 'undefined') {
       if (response.data.status === 'Token is Expired') {
@@ -37,13 +40,6 @@ api.interceptors.response.use(
       if (err.response.status === 401) {
         AuthService.logout();
         let public_url = '';
-        if (typeof process.env.PUBLIC_URL !== 'undefined') {
-          public_url = process.env.PUBLIC_URL;
-        } else {
-          if (typeof process.env.VUE_APP_PUBLIC_URL !== 'undefined') {
-            public_url = process.env.VUE_APP_PUBLIC_URL;
-          }
-        }
         history.push({ pathname: public_url + '/login' });
         window.location.reload();
       } else if (err.response.status === 405 || err.response.status === 500) {
