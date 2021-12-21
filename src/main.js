@@ -21,6 +21,9 @@ const AcercaDePage = Vue.defineAsyncComponent(() =>
 const LoginPage = Vue.defineAsyncComponent(() =>
   loadModule('./pages/auth/Login.vue', options),
 );
+const RegisterPage = Vue.defineAsyncComponent(() =>
+  loadModule('./pages/auth/Register.vue', options),
+);
 // ***********************************
 
 
@@ -30,7 +33,9 @@ const LoginPage = Vue.defineAsyncComponent(() =>
 const routes = [
   { path: '/', component: HomePage },
   { path: '/acerca-de', component: AcercaDePage },
+  // Páginas de administración
   { path: '/login', component: LoginPage },
+  { path: '/register', component: RegisterPage },
 ];
 // ***********************************
 
