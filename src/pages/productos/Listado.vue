@@ -15,21 +15,23 @@
           <th>Descripción</th>
           <th>Precio</th>
           <th>Imagen</th>
+          <th>Fecha</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-      <tr v-for="(producto, index) in productos" :key="index">
-        <td>{{producto.product_name}}</td>
-        <td>{{producto.product_description}}</td>
-        <td>{{producto.product_price}}</td>
-        <td><img :src="producto.product_image" class="img-fluid"/></td>
-        <td>
-          <router-link :to="'/productos/editar/' + producto.id" class="btn btn-outline-primary">
-            Editar
-          </router-link>
-        </td>
-      </tr>
+        <tr v-for="(producto, index) in productos" :key="index">
+          <td>{{ producto.product_name }}</td>
+          <td>{{ producto.product_description }}</td>
+          <td>{{ producto.product_price }}</td>
+          <td><img :src="producto.product_image" class="img-fluid" /></td>
+          <td class="date">{{ processDate(producto.created_at) }}</td>
+          <td>
+            <router-link :to="'/productos/editar/' + producto.id" class="btn btn-outline-primary">
+              Editar
+            </router-link>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -42,7 +44,11 @@ export default {
       productos: [],
     };
   },
-  methods: {},
+  methods: {
+    processDate(dateStr) {
+      return moment(dateStr).format('MMMM DD');
+    },
+  },
   computed: {},
   watch: {},
   created() {},
@@ -60,8 +66,11 @@ export default {
 </script>
 
 <style scoped>
-img{
-  max-width:100px;
-  height:auto;
+img {
+  max-width: 100px;
+  height: auto;
+}
+.date{
+  text-transform: capitalize;
 }
 </style>
