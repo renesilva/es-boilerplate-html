@@ -3,31 +3,34 @@
     <h2>Adicionar Producto</h2>
     <Form @submit="onSubmit" :validation-schema="schema">
       <div class="mb-3">
-        <label for="product_name" class="form-label">
-          Nombre del Producto<span style="color: red">*</span>
-        </label>
+        <label for="product_name" class="form-label"
+        >Nombre <span style="color: red">*</span></label
+        >
         <Field type="text" class="form-control" name="product_name" />
         <ErrorMessage name="product_name" class="text-danger small" />
       </div>
       <div class="mb-3">
-        <label for="product_description" class="form-label">
-          Descripción<span style="color: red">*</span>
-        </label>
-        <Field as="textarea" type="text" class="form-control" name="product_description" />
+        <label for="product_description" class="form-label"
+        >Descripción <span style="color: red">*</span></label
+        >
+        <Field type="text" class="form-control" name="product_description" as="textarea" />
         <ErrorMessage name="product_description" class="text-danger small" />
       </div>
       <div class="mb-3">
-        <label for="product_price" class="form-label"> Precio </label>
+        <label for="product_price" class="form-label"
+        >Precio <span style="color: red">*</span></label
+        >
         <Field type="number" class="form-control" name="product_price" />
         <ErrorMessage name="product_price" class="text-danger small" />
       </div>
       <div class="mb-3">
-        <label for="product_image" class="form-label"> Imagen </label>
+        <label for="product_image" class="form-label">Imagen</label>
         <Field type="file" class="form-control" name="product_image" />
         <ErrorMessage name="product_image" class="text-danger small" />
       </div>
       <div class="mb-3">
-        <button class="btn btn-primary">Añadir</button>
+        <button class="btn btn-primary">Adicionar</button>&nbsp;
+        <router-link class="btn btn-secondary" to="/productos">Cancelar</router-link>
       </div>
       <div class="mb-3">
         {{ message }}
@@ -44,10 +47,11 @@ export default {
   name: 'ProductosAdicionarPage',
   data() {
     const schema = toFormValidator(
-      z.object({
-        product_name: z.string({ required_error: 'Requerido' }).nonempty(),
-        product_description: z.string({ required_error: 'Requerido' }).nonempty(),
-      }),
+        z.object({
+          product_name: z.string({ required_error: 'Requerido' }).nonempty(),
+          product_description: z.string({ required_error: 'Requerido' }).nonempty(),
+          product_price: z.string({ required_error: 'Requerido' }).nonempty(),
+        }),
     );
     return {
       message: '',
@@ -57,20 +61,23 @@ export default {
   methods: {
     onSubmit(producto) {
       let formData = new FormData();
-      for (let index in producto) {
-        formData.append(index, producto[index]);
+      for (let x in producto) {
+        formData.append(x, producto[x]);
       }
-      formData.append('image', producto.product_image[0]);
+      if (typeof producto.product_image !== 'undefined') {
+        formData.append('image', producto.product_image[0]);
+      }
+
       window.api
-        .post('products/save', formData)
-        .then((response) => {
-          if (response.data.success) {
-            this.message = 'Guardado!';
-          } else {
-            this.message = 'Hubo un error.';
-          }
-        })
-        .catch((error) => console.log(error));
+          .post('products/save', formData)
+          .then((response) => {
+            if (response.data.success) {
+              this.message = 'Producto Adicionado!';
+            } else {
+              this.message = 'Hubo un error!';
+            }
+          })
+          .catch((error) => (this.message = 'Hubo un error!'));
     },
   },
   computed: {},
