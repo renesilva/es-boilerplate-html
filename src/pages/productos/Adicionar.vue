@@ -73,6 +73,7 @@ export default {
           .then((response) => {
             if (response.data.success) {
               this.message = 'Producto Adicionado!';
+              setTimeout(() => this.$router.push('/productos'),2000);
             } else {
               this.message = 'Hubo un error!';
             }
