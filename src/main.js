@@ -21,6 +21,9 @@ const AcercaDePage = Vue.defineAsyncComponent(() =>
 const LoginPage = Vue.defineAsyncComponent(() =>
     loadModule('./pages/auth/Login.vue', options),
 );
+const MiPerfilPage = Vue.defineAsyncComponent(() =>
+    loadModule('./pages/auth/MiPerfil.vue', options),
+);
 const RegisterPage = Vue.defineAsyncComponent(() =>
     loadModule('./pages/auth/Register.vue', options),
 );
@@ -45,6 +48,7 @@ const routes = [
   // Páginas de administración
   { path: '/login', component: LoginPage },
   { path: '/register', component: RegisterPage },
+  { path: '/mi-perfil', component: MiPerfilPage },
   // Productos
   { path: '/productos/', component: ProductosListadoPage },
   { path: '/productos/adicionar', component: ProductosAdicionarPage },

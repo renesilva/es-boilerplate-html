@@ -7,7 +7,7 @@
           class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
         >
           <i class="bi bi-bootstrap-fill me-2"></i>
-          <span class="fs-4">Simple header</span>
+          <span class="fs-4">Administración de Productos</span>
         </router-link>
         <ul class="nav nav-pills">
           <template v-for="(navOption, index) in navOptions" :key="index">
@@ -71,9 +71,13 @@ export default {
         let loggedInOptions = {
           route: '/productos',
           text: 'Productos',
-        }
+        };
+        let perfilOptions = {
+          route: '/mi-perfil',
+          text: 'Mi Perfil',
+        };
         // se pueden agregar opciones extra cuando inicie sesión
-        navOptions = [...navOptions, loggedInOptions];
+        navOptions = [...navOptions, loggedInOptions, perfilOptions];
       }
       return navOptions;
     },
