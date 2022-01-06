@@ -1,5 +1,5 @@
 import AuthService from '../services/auth.service.js';
-import { storageGet } from '../services/storage.js';
+import { storageGet } from '../services/storage.mjs';
 
 const user = storageGet('user');
 const initialState = user
