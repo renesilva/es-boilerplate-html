@@ -4,36 +4,65 @@
       <h2>Listado de Productos</h2>
       <div>
         <router-link class="btn btn-outline-primary" to="/productos/adicionar">
-          Añadir Producto
+          Adicionar Producto
         </router-link>
       </div>
     </div>
     <table class="table">
       <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Precio</th>
-          <th>Imagen</th>
-          <th>Fecha</th>
-          <th></th>
-        </tr>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Imagen</th>
+        <th>Precio</th>
+        <th>Creado en</th>
+        <th></th>
+      </tr>
       </thead>
       <tbody>
-        <tr v-for="(producto, index) in productos" :key="index">
-          <td>{{ producto.product_name }}</td>
-          <td>{{ producto.product_description }}</td>
-          <td>{{ producto.product_price }}</td>
-          <td><img :src="producto.product_image" class="img-fluid" /></td>
-          <td class="date">{{ processDate(producto.created_at) }}</td>
-          <td>
-            <router-link :to="'/productos/editar/' + producto.id" class="btn btn-outline-primary">
-              Editar
-            </router-link>
-          </td>
-        </tr>
+      <tr v-for="(producto, index) in productos" :key="index">
+        <td>
+          {{ producto.product_name }}
+        </td>
+        <td>
+          {{ producto.product_description }}
+        </td>
+        <td>
+          <img :src="producto.product_image" class="img-fluid"/>
+        </td>
+        <td>
+          {{ producto.product_price }}
+        </td>
+        <td class="fecha">
+          {{ formatoDeFecha(producto.created_at) }}
+        </td>
+        <td>
+          <router-link :to="'/productos/editar/' + producto.id" class="btn btn-outline-primary btn-sm">
+            Editar
+          </router-link>
+          &nbsp;
+          <a @click="eliminarProductoModal(producto.id)" class="btn btn-outline-primary btn-sm">Eliminar</a>
+        </td>
+      </tr>
       </tbody>
     </table>
+    <div class="modal fade" id="deleteModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Eliminar producto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            ¿Estás seguro de eliminar este producto?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button @click="eliminarProducto" type="button" class="btn btn-primary">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -42,21 +71,39 @@ export default {
   data() {
     return {
       productos: [],
+      modal: null,
+      productoEliminar: 0
     };
   },
   methods: {
-    processDate(dateStr) {
-      return moment(dateStr).format('MMMM DD');
+    formatoDeFecha(fecha) {
+      return moment(fecha).format('MMMM D, YYYY');
     },
+    eliminarProductoModal(id) {
+      this.modal.show();
+      this.productoEliminar = id;
+    },
+    eliminarProducto(){
+      window.api
+          .delete('products/delete/' + this.productoEliminar)
+          .then((response) => {
+            this.cargarProductos();
+            this.modal.hide()
+          });
+
+    },
+    cargarProductos(){
+      window.api
+          .get('products/myProducts')
+          .then((response) => this.productos = response.data.products);
+    }
   },
   computed: {},
   watch: {},
   created() {},
   mounted() {
-    window.api
-      .get('products/myProducts')
-      .then((response) => (this.productos = response.data.products))
-      .catch((error) => console.log(error));
+    this.modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    this.cargarProductos();
   },
   components: {},
   // Se pueden utilizar estos hooks para el ciclo de vida
@@ -70,7 +117,8 @@ img {
   max-width: 100px;
   height: auto;
 }
-.date{
+
+.fecha {
   text-transform: capitalize;
 }
 </style>
