@@ -1,5 +1,5 @@
 import { api } from '../config/site.config.mjs';
-import { storageGet, storageSave, storageDelete } from "./storage.js";
+import { storageGet, storageSave, storageDelete } from "./storage.mjs";
 
 class AuthService {
   login(user) {
